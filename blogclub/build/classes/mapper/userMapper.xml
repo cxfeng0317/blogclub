@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IUserDao">
+	<select id="findByid" resultType="User">
+		select
+		`id`,`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`
+		from user where id =#{id} and pass =#{pass}
+	</select>
+	<select id="findByname" resultType="User">
+		select
+		`id`,`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`
+		from user where name =#{name} and pass =#{pass}
+	</select>
+	<insert id="add">
+		insert into user
+		(`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`)
+		values
+		(#{name},#{pass},#{sex},#{age},#{tel},#{provinceId},#{cityId},#{areaId},#{inputdate},#{ip})
+	</insert>
+	<select id="findUserList" resultType="User">
+		select
+		`id`,`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`
+		from user where id != 1
+	</select>
+	<delete id="delete">
+		delete from user where id = #{id}
+	</delete>
+	<select id="find" resultType="User">
+		select
+		`id`,`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`
+		from user where id =#{id}
+	</select>
+	<update id="update">
+		update user
+		<set>
+			<if test="name!=null">`name`=#{name},</if>
+			<if test="pass!=null">`pass`=#{pass},</if>
+			<if test="sex!=null">`sex`=#{sex},</if>
+			<if test="age!=null">`age`=#{age},</if>
+			<if test="tel!=null">`tel`=#{tel},</if>
+			<if test="provinceId!=null"> `provinceId`=#{provinceId},</if>
+			<if test="cityId!=null">`cityId`=#{cityId},</if>
+			<if test="areaId!=null">`areaId`=#{areaId},</if>
+			<if test="inputdate!=null">`inputdate`=#{inputdate},</if>
+			<if test="ip!=null">`ip`=#{ip}</if>
+		</set>
+		where id=#{id}
+	</update>
+	<select id="findByUserName" resultType="User">
+		select
+		`id`,`name`,`pass`,`sex`,`age`,`tel`,`provinceId`,`cityId`,`areaId`,`inputdate`,`ip`
+		from user where name =#{name}
+	</select>
+</mapper>
+  
